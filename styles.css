@@ -1,0 +1,261 @@
+:root {
+  color-scheme: light;
+  --ink: #151515;
+  --paper: #f7f2e8;
+  --line: rgba(21, 21, 21, 0.22);
+  --coral: #e9573f;
+  --teal: #087f7b;
+  --mustard: #d7a425;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #d9ded7;
+  color: var(--ink);
+  font-family:
+    Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "PingFang SC", "Microsoft YaHei", sans-serif;
+}
+
+a {
+  color: inherit;
+}
+
+.poster-shell {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 32px;
+}
+
+.poster {
+  position: relative;
+  isolation: isolate;
+  width: min(100%, 760px);
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background: var(--paper);
+  border: 1px solid rgba(21, 21, 21, 0.16);
+  box-shadow: 0 28px 80px rgba(30, 33, 29, 0.24);
+}
+
+.poster::before,
+.poster::after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.poster::before {
+  inset: 28px;
+  border: 1px solid var(--line);
+}
+
+.poster::after {
+  right: 44px;
+  bottom: 44px;
+  width: 128px;
+  height: 128px;
+  border: 24px solid var(--coral);
+  border-left-color: var(--teal);
+  border-bottom-color: var(--mustard);
+  border-radius: 50%;
+}
+
+.poster__art {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.84;
+}
+
+.poster__topline,
+.poster__details,
+.poster__summary,
+.poster__cta,
+.poster__title {
+  position: absolute;
+  z-index: 2;
+}
+
+.poster__topline {
+  top: 44px;
+  left: 44px;
+  right: 44px;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.85rem;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.poster__title {
+  top: 122px;
+  left: 44px;
+  right: 44px;
+}
+
+.poster__kicker {
+  margin: 0 0 16px;
+  width: max-content;
+  padding: 7px 12px;
+  background: var(--ink);
+  color: var(--paper);
+  font-size: 0.88rem;
+  font-weight: 900;
+}
+
+h1 {
+  margin: 0;
+  max-width: 8em;
+  font-size: 5.8rem;
+  line-height: 0.94;
+  font-weight: 950;
+}
+
+.poster__details {
+  left: 44px;
+  bottom: 154px;
+  display: grid;
+  gap: 9px;
+  font-size: 1.06rem;
+  font-weight: 850;
+}
+
+.poster__details p,
+.poster__summary p {
+  margin: 0;
+}
+
+.poster__summary {
+  left: 44px;
+  right: 226px;
+  bottom: 76px;
+  display: grid;
+  gap: 6px;
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.poster__cta {
+  right: 44px;
+  top: 326px;
+  display: inline-grid;
+  place-items: center;
+  min-width: 112px;
+  min-height: 112px;
+  padding: 16px;
+  border-radius: 50%;
+  background: var(--teal);
+  color: #fffdf5;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 900;
+  box-shadow: 0 16px 34px rgba(8, 127, 123, 0.26);
+  transition:
+    transform 160ms ease,
+    background 160ms ease;
+}
+
+.poster__cta:hover {
+  transform: translateY(-3px);
+  background: #0b706d;
+}
+
+.poster__cta:focus-visible {
+  outline: 3px solid var(--mustard);
+  outline-offset: 4px;
+}
+
+@media (max-width: 640px) {
+  .poster-shell {
+    padding: 16px;
+  }
+
+  .poster {
+    min-height: 680px;
+    aspect-ratio: auto;
+  }
+
+  .poster::before {
+    inset: 20px;
+  }
+
+  .poster::after {
+    right: 28px;
+    bottom: 32px;
+    width: 92px;
+    height: 92px;
+    border-width: 18px;
+  }
+
+  .poster__topline {
+    top: 30px;
+    left: 30px;
+    right: 30px;
+    font-size: 0.78rem;
+  }
+
+  .poster__title {
+    top: 102px;
+    left: 30px;
+    right: 30px;
+  }
+
+  h1 {
+    font-size: 4rem;
+  }
+
+  .poster__cta {
+    top: 300px;
+    right: 30px;
+    min-width: 92px;
+    min-height: 92px;
+    font-size: 0.86rem;
+  }
+
+  .poster__details {
+    left: 30px;
+    bottom: 158px;
+    font-size: 0.96rem;
+  }
+
+  .poster__summary {
+    left: 30px;
+    right: 136px;
+    bottom: 46px;
+    font-size: 0.86rem;
+    line-height: 1.55;
+  }
+}
+
+@media (max-width: 420px) {
+  .poster {
+    min-height: 640px;
+  }
+
+  h1 {
+    font-size: 3.35rem;
+  }
+
+  .poster__summary {
+    right: 30px;
+    bottom: 112px;
+  }
+}
